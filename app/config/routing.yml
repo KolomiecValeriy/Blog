@@ -1,0 +1,4 @@
+kolomiets_blog:
+    resource: "@KolomietsBlogBundle/Resources/config/routing.yml"
+    prefix:   /
+

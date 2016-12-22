@@ -1,0 +1,4 @@
+services:
+#    kolomiets_blog.example:
+#        class: Kolomiets\BlogBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
