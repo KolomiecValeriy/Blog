@@ -1,4 +1,13 @@
+<!Doctype html>
+<html>
+<head>
+    <link href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
+    <title>Show posts</title>
+</head>
+<body>
 <h1>Show posts</h1>
-{% for post in posts %}
-    <li>{{ post.name }} - {{ post.text }} - {{ post.date|date("d.m.Y") }} - {{ post.author }}</li>
-{% endfor %}
+    {% for post in posts %}
+        <li>{{ post.name }} - {{ post.text }} - {{ post.date|date("d.m.Y") }} - {{ post.author }}</li>
+    {% endfor %}
+</body>
+</html>
