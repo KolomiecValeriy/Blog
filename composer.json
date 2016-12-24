@@ -60,6 +60,10 @@
         },
         "branch-alias": {
             "dev-master": "3.2-dev"
+        },
+        "asset-installer-paths": {
+            "npm-asset-library": "web/vendor",
+            "bower-asset-library": "web/vendor"
         }
     }
 }

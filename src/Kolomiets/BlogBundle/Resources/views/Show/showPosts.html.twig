@@ -1,0 +1,4 @@
+<h1>Show posts</h1>
+{% for post in posts %}
+    <li>{{ post.name }} - {{ post.text }} - {{ post.date|date("d.m.Y") }} - {{ post.author }}</li>
+{% endfor %}
