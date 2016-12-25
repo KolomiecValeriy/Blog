@@ -1,7 +1,19 @@
-kolomiets_blog_homepage:
-    path:     /index
-    defaults: { _controller: KolomietsBlogBundle:Default:index }
-
-kolomiets_blog_show_posts:
+show_posts:
     path:     /show
     defaults: { _controller: KolomietsBlogBundle:Default:showPosts }
+
+add_post:
+    path:     /addpost
+    defaults: { _controller: KolomietsBlogBundle:Default:addPost }
+
+removePost:
+    path:     /remove/{postId}
+    defaults: { _controller: KolomietsBlogBundle:Default:removePost, postId: '0' }
+    requirements:
+        postId: '\d+'
+
+editPost:
+    path:     /edit/{postId}
+    defaults: { _controller: KolomietsBlogBundle:Default:editPost, postId: '0' }
+    requirements:
+        postId: '\d+'

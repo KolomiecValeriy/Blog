@@ -1,0 +1,23 @@
+<!Doctype html>
+<html>
+<head>
+    {% block css %}
+        <link href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}" media="all" rel="stylesheet" type="text/css" />
+    {% endblock %}
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+</head>
+<body>
+    {% block body %}
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h1>{% block head %}{% endblock %}</h1>
+            </div>
+            <div class="col-md-6 col-md-offset-3">
+                {% block text %}{% endblock %}
+            </div>
+        </div>
+    {% endblock %}
+</body>
+</html>

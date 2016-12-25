@@ -1,0 +1,17 @@
+{% extends "KolomietsBlogBundle:Default:template.html.twig" %}
+
+{% block title %}All posts{% endblock %}
+{% block head %}Show posts{% endblock %}
+{% block text %}
+    {% for post in posts %}
+        <table class="table table-striped">
+            <tr>
+                <th>{{ post.name }}</th>
+                <td><a href = {{ edit }}/{{ post.id }}>Edit</a></td>
+                <td><a href = {{ remove }}/{{ post.id }}>Remove</a></td>
+            </tr>
+            <tr><td>{{ post.text }}</td></tr>
+            <tr><td>{{ post.date|date("d.m.Y") }}</td><td>{{ post.author }}</td></tr>
+        </table>
+    {% endfor %}
+{% endblock %}

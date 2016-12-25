@@ -1,0 +1,12 @@
+{% extends "KolomietsBlogBundle:Default:template.html.twig" %}
+
+{% block title %}Add post{% endblock %}
+{% block head %}New post{% endblock %}
+{% block text %}
+    <div class="form-group">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
