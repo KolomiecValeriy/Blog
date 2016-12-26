@@ -3,6 +3,7 @@
 namespace Kolomiets\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Post
@@ -25,6 +26,13 @@ class Post
      * @var string
      *
      * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *     min = 2,
+     *     max = 50,
+     *     minMessage = "Minimum 2 character",
+     *     maxMessage = "50 character Max"
+     * )
      */
     private $name;
 
@@ -32,6 +40,11 @@ class Post
      * @var string
      *
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *     min = 2,
+     *     minMessage = "Minimum 2 character"
+     * )
      */
     private $text;
 

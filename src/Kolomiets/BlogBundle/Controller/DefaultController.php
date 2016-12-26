@@ -39,10 +39,10 @@ class DefaultController extends Controller
     public function addPostAction(Request $request)
     {
         $post = new Post();
-        $post->setName('Third name');
-        $post->setText('This is third text in this posts.');
+        $post->setName('New name');
+        $post->setText('Enter text to this posts.');
         $post->setDate(new \DateTime());
-        $post->setAuthor(2);
+        $post->setAuthor(1);
 
         $form = $this->createFormBuilder($post)
             ->add('name', TextType::class)

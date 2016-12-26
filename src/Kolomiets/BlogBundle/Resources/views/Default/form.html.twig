@@ -5,7 +5,9 @@
 {% block text %}
     <div class="form-group">
         {{ form_start(form) }}
-        {{ form_widget(form) }}
+        <div style="display: none">
+            {{ form_row(form.date) }}
+        </div>
         {{ form_end(form) }}
     </div>
 {% endblock %}
