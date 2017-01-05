@@ -3,6 +3,7 @@
 namespace Kolomiets\BlogBundle\Controller;
 
 use Kolomiets\BlogBundle\Entity\Post;
+use Kolomiets\BlogBundle\Form\Type\PostType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -39,29 +40,21 @@ class DefaultController extends Controller
     public function addPostAction(Request $request)
     {
         $post = new Post();
-        $post->setName('New name');
-        $post->setText('Enter text to this posts.');
-        $post->setDate(new \DateTime());
-        $post->setAuthor(1);
 
-        $form = $this->createFormBuilder($post)
-            ->add('name', TextType::class)
-            ->add('text', TextareaType::class)
-            ->add('date', DateType::class)
-            ->add('author', TextType::class)
-            ->add('save', SubmitType::class, ['label' => 'Send'])
-            ->getForm();
+        $form = $this->createForm(PostType::class, $post);
 
-        $form->handleRequest($request);
+        if($request->isMethod($request::METHOD_POST)) {
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $post = $form->getData();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $post = $form->getData();
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($post);
-            $em->flush();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($post);
+                $em->flush();
 
-            return $this->redirectToRoute('show_posts');
+                return $this->redirectToRoute('show_posts');
+            }
         }
 
         return $this->render('KolomietsBlogBundle:Default:form.html.twig',
