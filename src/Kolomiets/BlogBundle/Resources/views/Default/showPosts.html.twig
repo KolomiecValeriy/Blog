@@ -1,17 +1,35 @@
 {% extends "KolomietsBlogBundle:Default:template.html.twig" %}
 
 {% block title %}All posts{% endblock %}
-{% block head %}Show posts{% endblock %}
+{% block head %}Posts{% endblock %}
 {% block text %}
     {% for post in posts %}
-        <table class="table table-striped">
-            <tr>
-                <th>{{ post.name }}</th>
-                <td><a href = {{ edit }}/{{ post.id }}>Edit</a></td>
-                <td><a href = {{ remove }}/{{ post.id }}>Remove</a></td>
-            </tr>
-            <tr><td>{{ post.text }}</td></tr>
-            <tr><td>{{ post.date|date("d.m.Y") }}</td><td>{{ post.author }}</td></tr>
-        </table>
+    <div class="well">
+        <div class="media">
+            <div class="media-body">
+                <h4 class="media-heading">{{ post.name }}</h4>
+                <p class="text-right">{{ post.author }}</p>
+                <p>{{ post.text }}</p>
+                <ul class="list-inline list-unstyled">
+                    <li><span><i class="glyphicon glyphicon-calendar"></i> {{ post.date|date("d.m.Y") }}</span></li>
+                    <li>|</li>
+                    <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+                    <li>|</li>
+                    <li>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </li>
+                    <li>|</li>
+                    <li>
+                        <a href = {{ edit }}/{{ post.id }}>Edit</a>
+                        <a href = {{ remove }}/{{ post.id }}>Remove</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
     {% endfor %}
 {% endblock %}
