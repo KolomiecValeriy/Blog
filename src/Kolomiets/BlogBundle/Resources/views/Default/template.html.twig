@@ -19,12 +19,15 @@
             </div>
         </nav>
         <div class="row">
+            <div class="span5">
             <div class="col-md-6 col-md-offset-3">
                 <h1>{% block head %}{% endblock %}</h1>
             </div>
             <div class="col-md-6 col-md-offset-3">
                 {% block text %}{% endblock %}
             </div>
+            </div>
+            {% block category %}{% endblock %}
         </div>
     {% endblock %}
 </body>

@@ -17,3 +17,7 @@ editPost:
     defaults: { _controller: KolomietsBlogBundle:Default:editPost, postId: '0' }
     requirements:
         postId: '\d+'
+
+add_category:
+    path:     /addcategory
+    defaults: { _controller: KolomietsBlogBundle:Category:addCategory }

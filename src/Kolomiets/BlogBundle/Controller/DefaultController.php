@@ -22,6 +22,7 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $posts = $em->getRepository('KolomietsBlogBundle:Post')->findAll();
+        $categories = $em->getRepository('KolomietsBlogBundle:Category')->findAll();
 
         $removeLink =$this->generateUrl('removePost', [], UrlGeneratorInterface::ABSOLUTE_URL);
         $editLink =$this->generateUrl('editPost', [], UrlGeneratorInterface::ABSOLUTE_URL);
@@ -29,6 +30,7 @@ class DefaultController extends Controller
         return $this->render('KolomietsBlogBundle:Default:showPosts.html.twig',
             [
                 'posts' => $posts,
+                'categories' => $categories,
                 'remove' => $removeLink,
                 'edit' => $editLink,
             ]
@@ -44,7 +46,6 @@ class DefaultController extends Controller
         $post = new Post();
 
         $form = $this->createForm(PostType::class, $post);
-//        $form->setData('class', 'form-group');
 
         if($request->isMethod($request::METHOD_POST)) {
             $form->handleRequest($request);
