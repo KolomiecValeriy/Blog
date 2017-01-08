@@ -25,7 +25,6 @@ class MenuBuilder
         $menu->addChild('All posts', array('route' => 'show_posts'));
         $menu->addChild('Add post', array('route' => 'add_post'));
         $menu->setChildrenAttribute('class', 'nav navbar-nav');
-        // ... add more children
 
         return $menu;
     }

@@ -4,6 +4,7 @@ namespace Kolomiets\BlogBundle\Controller;
 
 use Kolomiets\BlogBundle\Entity\Post;
 use Kolomiets\BlogBundle\Form\Type\PostType;
+use Kolomiets\BlogBundle\Form\Type\RemovePostType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -21,6 +22,7 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $posts = $em->getRepository('KolomietsBlogBundle:Post')->findAll();
+
         $removeLink =$this->generateUrl('removePost', [], UrlGeneratorInterface::ABSOLUTE_URL);
         $editLink =$this->generateUrl('editPost', [], UrlGeneratorInterface::ABSOLUTE_URL);
 
@@ -42,6 +44,7 @@ class DefaultController extends Controller
         $post = new Post();
 
         $form = $this->createForm(PostType::class, $post);
+//        $form->setData('class', 'form-group');
 
         if($request->isMethod($request::METHOD_POST)) {
             $form->handleRequest($request);
