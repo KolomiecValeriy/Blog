@@ -25,12 +25,12 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=50, unique=true)
      * @Assert\NotBlank()
      * @Assert\Length(
-     *     min = 2,
+     *     min = 4,
      *     max = 50,
-     *     minMessage = "Minimum 2 character",
+     *     minMessage = "Minimum 4 character",
      *     maxMessage = "50 character Max"
      * )
      */
@@ -42,8 +42,8 @@ class Post
      * @ORM\Column(type="text")
      * @Assert\NotBlank()
      * @Assert\Length(
-     *     min = 2,
-     *     minMessage = "Minimum 2 character"
+     *     min = 4,
+     *     minMessage = "Minimum 4 character"
      * )
      */
     private $text;
@@ -56,12 +56,23 @@ class Post
     private $date;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *     min = 4,
+     *     max = 30,
+     *     minMessage = "Minimum 4 character",
+     *     maxMessage = "30 character Max"
+     * )
      */
     private $author;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Category")
+     */
+    private $category;
 
     /**
      * Get id
@@ -148,7 +159,7 @@ class Post
     /**
      * Set author
      *
-     * @param integer $author
+     * @param string $author
      *
      * @return Post
      */
@@ -162,11 +173,34 @@ class Post
     /**
      * Get author
      *
-     * @return int
+     * @return string
      */
     public function getAuthor()
     {
         return $this->author;
     }
-}
 
+    /**
+     * Set category
+     *
+     * @param integer $category
+     *
+     * @return Post
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return integer
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+}

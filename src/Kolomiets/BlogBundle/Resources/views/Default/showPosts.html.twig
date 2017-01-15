@@ -1,15 +1,14 @@
 {% extends "KolomietsBlogBundle:Default:template.html.twig" %}
 
-{% block title %}All posts{% endblock %}
-{% block head %}Posts{% endblock %}
+{% block head %}All posts{% endblock %}
 {% block text %}
     {% set i = 0 %}
     {% for post in posts %}
         <div class="well">
             <div class="media">
                 <div class="media-body">
-                    <h4 class="media-heading">{{ post.name }}</h4>
-                    <p class="text-right">{{ post.author }}</p>
+                    <h4 class="media-heading"><strong>{{ post.name }}</strong></h4>
+                    <p class="text-right"><small>Author: </small><em>{{ post.author }}</em></p>
                     <p>{{ post.text }}</p>
                     <ul class="list-inline list-unstyled">
                         <li><span><i class="glyphicon glyphicon-calendar"></i> {{ post.date|date("d.m.Y") }}</span></li>
@@ -21,7 +20,6 @@
                             {{ form_widget(editForm[i].name, { 'attr': { 'value': post.id } }) }}
                             {{ form_widget(editForm[i]) }}
                             {{ form_end(editForm[i]) }}
-                            {#<a href = {{ path('edit_post') }}/{{ post.id }}>Edit</a>#}
                         </li>
                         <li>|</li>
                         <li>

@@ -2,6 +2,7 @@
 
 namespace Kolomiets\BlogBundle\Form\Type;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -18,6 +19,14 @@ class PostType extends AbstractType
             ->add('text', TextareaType::class)
             ->add('date', DateType::class)
             ->add('author', TextType::class, ['label' => 'Enter you name'])
+            ->add('category', EntityType::class,
+                [
+                    'label' => 'Category',
+                    'choice_label' => 'getName',
+                    'multiple' => false,
+                    'class' => 'KolomietsBlogBundle:Category',
+                ]
+            )
             ->add('save', SubmitType::class, ['label' => 'Send']);
     }
 
@@ -25,4 +34,8 @@ class PostType extends AbstractType
     {
         return 'kolomiets_blog_bundle_post_type';
     }
+//add('category', 'entity', array(
+//'label' => 'Категория',
+//'required' => false,
+//'class' => 'Test\\NewsBundle\\Entity\\NewsCategory'))
 }
