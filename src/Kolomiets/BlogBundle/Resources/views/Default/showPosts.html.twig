@@ -11,7 +11,7 @@
                     <p class="text-right"><small>Author: </small><em>{{ post.author }}</em></p>
                     <p>{{ post.text }}</p>
                     <ul class="list-inline list-unstyled">
-                        <li><span><i class="glyphicon glyphicon-calendar"></i> {{ post.date|date("d.m.Y") }}</span></li>
+                        <li><span><i class="glyphicon glyphicon-calendar"></i> {{ post.createdAt|date("F jS \\a\\t g:ia") }}</span></li>
                         <li>|</li>
                         <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
                         <li>|</li>

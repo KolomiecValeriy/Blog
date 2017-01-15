@@ -2,6 +2,7 @@
 
 namespace Kolomiets\BlogBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -49,11 +50,10 @@ class Post
     private $text;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(type="date")
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
      */
-    private $date;
+    private $createdAt;
 
     /**
      * @var string
@@ -133,30 +133,6 @@ class Post
     }
 
     /**
-     * Set date
-     *
-     * @param \DateTime $date
-     *
-     * @return Post
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
-
-    /**
      * Set author
      *
      * @param string $author
@@ -202,5 +178,29 @@ class Post
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Post
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 }

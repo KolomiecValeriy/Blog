@@ -17,7 +17,6 @@ class PostType extends AbstractType
         $builder
             ->add('name', TextType::class, ['label' => 'Title'])
             ->add('text', TextareaType::class)
-            ->add('date', DateType::class)
             ->add('author', TextType::class, ['label' => 'Enter you name'])
             ->add('category', EntityType::class,
                 [
@@ -34,8 +33,4 @@ class PostType extends AbstractType
     {
         return 'kolomiets_blog_bundle_post_type';
     }
-//add('category', 'entity', array(
-//'label' => 'Категория',
-//'required' => false,
-//'class' => 'Test\\NewsBundle\\Entity\\NewsCategory'))
 }
