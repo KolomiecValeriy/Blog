@@ -1,0 +1,21 @@
+{% extends "KolomietsBlogBundle:Default:template.html.twig" %}
+
+{% block title %}All posts{% endblock %}
+{% block head %}Posts{% endblock %}
+{% block text %}
+    <div class="well">
+        <div class="media">
+            <div class="media-body text-center">
+                <h1><b>No posts found!</b></h1>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block category %}
+    <div class="span1 offset2 panel-info">
+        <h3 class="text-center">Categories</h3>
+        {% for category in categories %}
+            <p class="text-center">{{ category.name }}</p>
+        {% endfor %}
+    </div>
+{% endblock %}

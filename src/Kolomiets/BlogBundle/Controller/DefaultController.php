@@ -24,6 +24,15 @@ class DefaultController extends Controller
         $posts = $em->getRepository('KolomietsBlogBundle:Post')->findAll();
         $categories = $em->getRepository('KolomietsBlogBundle:Category')->findAll();
 
+        if (count($posts) < 1) {
+            return $this->render('KolomietsBlogBundle:Default:emptyPosts.html.twig',
+                [
+                    'posts' => $posts,
+                    'categories' => $categories,
+                ]
+            );
+        }
+
         for($i = 0; $i < count($posts); $i++) {
             $removeForm[$i] = $this->createForm(RemovePostType::class);
             $editForm[$i] = $this->createForm(EditPostType::class);
