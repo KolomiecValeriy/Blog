@@ -43,9 +43,7 @@ class Comment
     private $createdAt;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="Kolomiets\BlogBundle\Entity\Post")
      */
     private $post;
 

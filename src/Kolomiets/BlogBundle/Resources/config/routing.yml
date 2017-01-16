@@ -25,3 +25,9 @@ edit_post:
 add_category:
     path:     /addcategory
     defaults: { _controller: KolomietsBlogBundle:Category:addCategory }
+
+add_comment:
+    path:     /addcomment/{postId}
+    defaults: { _controller: KolomietsBlogBundle:Comment:addComment, postId: '0' }
+    requirements:
+        postId: '\d+'

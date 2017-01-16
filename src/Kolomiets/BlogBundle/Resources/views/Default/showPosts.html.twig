@@ -28,6 +28,13 @@
                             {{ form_widget(removeForm[i]) }}
                             {{ form_end(removeForm[i]) }}
                         </li>
+                        <li>|</li>
+                        <li>
+                            {{ form_start(addCommentForm[i]) }}
+                            {{ form_widget(addCommentForm[i].name, { 'attr': { 'value': post.id } }) }}
+                            {{ form_widget(addCommentForm[i]) }}
+                            {{ form_end(addCommentForm[i]) }}
+                        </li>
                     </ul>
                 </div>
             </div>

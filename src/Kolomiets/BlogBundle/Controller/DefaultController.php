@@ -3,20 +3,18 @@
 namespace Kolomiets\BlogBundle\Controller;
 
 use Kolomiets\BlogBundle\Entity\Post;
+use Kolomiets\BlogBundle\Form\Type\AddCommentType;
 use Kolomiets\BlogBundle\Form\Type\EditPostType;
 use Kolomiets\BlogBundle\Form\Type\PostType;
 use Kolomiets\BlogBundle\Form\Type\RemovePostType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function showPostsAction(Request $request)
     {
@@ -24,7 +22,7 @@ class DefaultController extends Controller
         $posts = $em->getRepository('KolomietsBlogBundle:Post')->findAll();
         $categories = $em->getRepository('KolomietsBlogBundle:Category')->findAll();
 
-        if (count($posts) < 1) {
+        if (count($posts) == 0) {
             return $this->render('KolomietsBlogBundle:Default:emptyPosts.html.twig',
                 [
                     'posts' => $posts,
@@ -36,10 +34,12 @@ class DefaultController extends Controller
         for($i = 0; $i < count($posts); $i++) {
             $removeForm[$i] = $this->createForm(RemovePostType::class);
             $editForm[$i] = $this->createForm(EditPostType::class);
+            $addCommentForm[$i] = $this->createForm(AddCommentType::class);
 
             if ($request->isMethod($request::METHOD_POST)) {
                 $removeForm[$i]->handleRequest($request);
                 $editForm[$i]->handleRequest($request);
+                $addCommentForm[$i]->handleRequest($request);
 
                 if ($removeForm[$i]->isSubmitted() && $removeForm[$i]->isValid()) {
                     $post = $removeForm[$i]->getData();
@@ -52,9 +52,16 @@ class DefaultController extends Controller
 
                     return $this->redirectToRoute('edit_post', ['postId' => $post['name']]);
                 }
+
+                if ($addCommentForm[$i]->isSubmitted() && $addCommentForm[$i]->isValid()) {
+                    $post = $addCommentForm[$i]->getData();
+
+                    return $this->redirectToRoute('add_comment', ['postId' => $post['name']]);
+                }
             }
             $removeForm[$i] = $removeForm[$i]->createView();
             $editForm[$i] = $editForm[$i]->createView();
+            $addCommentForm[$i] = $addCommentForm[$i]->createView();
         }
 
         return $this->render('KolomietsBlogBundle:Default:showPosts.html.twig',
@@ -63,6 +70,7 @@ class DefaultController extends Controller
                 'categories' => $categories,
                 'removeForm' => $removeForm,
                 'editForm' => $editForm,
+                'addCommentForm' => $addCommentForm,
             ]
         );
     }
@@ -102,7 +110,7 @@ class DefaultController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function editPostAction($postId, Request $request)
+    public function editPostAction(Request $request, $postId)
     {
         $em = $this->getDoctrine()->getManager();
         $post = $em->getRepository('KolomietsBlogBundle:Post')->find($postId);

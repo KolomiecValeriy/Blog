@@ -70,7 +70,7 @@ class Post
     private $author;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\ManyToOne(targetEntity="Kolomiets\BlogBundle\Entity\Category")
      */
     private $category;
 
