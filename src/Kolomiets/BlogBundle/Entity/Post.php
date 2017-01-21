@@ -71,6 +71,7 @@ class Post
 
     /**
      * @ORM\ManyToOne(targetEntity="Kolomiets\BlogBundle\Entity\Category")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $category;
 

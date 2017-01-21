@@ -20,6 +20,7 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $posts = $em->getRepository('KolomietsBlogBundle:Post')->findAll();
+        $comments = $em->getRepository('KolomietsBlogBundle:Comment')->findAll();
         $categories = $em->getRepository('KolomietsBlogBundle:Category')->findAll();
 
         if (count($posts) == 0) {
@@ -67,6 +68,7 @@ class DefaultController extends Controller
         return $this->render('KolomietsBlogBundle:Default:showPosts.html.twig',
             [
                 'posts' => $posts,
+                'comments' => $comments,
                 'categories' => $categories,
                 'removeForm' => $removeForm,
                 'editForm' => $editForm,

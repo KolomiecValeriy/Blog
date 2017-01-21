@@ -44,6 +44,7 @@ class Comment
 
     /**
      * @ORM\ManyToOne(targetEntity="Kolomiets\BlogBundle\Entity\Post")
+     * @ORM\JoinColumn(name="postId", referencedColumnName="id", onDelete="CASCADE")
      */
     private $post;
 

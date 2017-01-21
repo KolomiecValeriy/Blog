@@ -17,7 +17,6 @@ class CommentType extends AbstractType
         $builder
             ->add('text', TextareaType::class)
             ->add('author', TextType::class, ['label' => 'Enter you name'])
-            ->add('post', TextType::class)
             ->add('save', SubmitType::class, ['label' => 'Send']);
     }
 

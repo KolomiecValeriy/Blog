@@ -15,6 +15,7 @@ class CommentController extends Controller
         $post = $em->getRepository("KolomietsBlogBundle:Post")->find($postId);
 
         $comment = new Comment();
+        $comment->setPost($post);
         $form = $this->createForm(CommentType::class, $comment);
 
         if($request->isMethod($request::METHOD_POST)) {
@@ -31,8 +32,7 @@ class CommentController extends Controller
 
         return $this->render('KolomietsBlogBundle:Default:comment.html.twig',
             [
-                'form' => $form->createView(),
-                'post' => $postId,
+                'form' => $form->createView()
             ]
         );
     }
