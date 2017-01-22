@@ -2,6 +2,12 @@ blog:
     path:     /
     defaults: { _controller: KolomietsBlogBundle:Default:showPosts }
 
+locale_show:
+    path:     /{_locale}/show
+    defaults: { _controller: KolomietsBlogBundle:Default:showPosts }
+    requirements:
+        _locale: en|ru
+
 show_posts:
     path:     /show
     defaults: { _controller: KolomietsBlogBundle:Default:showPosts }
