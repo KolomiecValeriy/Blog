@@ -25,7 +25,7 @@ class PostType extends AbstractType
                     'class' => 'KolomietsBlogBundle:Category',
                 ]
             )
-            ->add('save', SubmitType::class, ['label' => 'Send']);
+            ->add('save', SubmitType::class, ['label' => 'Save']);
     }
 
     public function getName()

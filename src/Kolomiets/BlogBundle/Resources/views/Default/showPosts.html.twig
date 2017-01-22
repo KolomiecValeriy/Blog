@@ -1,6 +1,6 @@
 {% extends "KolomietsBlogBundle:Default:template.html.twig" %}
 
-{% block head %}All posts{% endblock %}
+{% block head %}{% trans %}All posts{% endtrans %}{% endblock %}
 {% block text %}
     {% set i = 0 %}
     {% for post in posts %}
@@ -8,7 +8,7 @@
             <div class="media">
                 <div class="media-body">
                     <h4 class="media-heading"><strong>{{ post.name }}</strong></h4>
-                    <p class="text-right"><small>Author: </small><em>{{ post.author }}</em></p>
+                    <p class="text-right"><small>{% trans %}Author{% endtrans %}: </small><em>{{ post.author }}</em></p>
                     <p>{{ post.text }}</p>
                     <ul class="list-inline list-unstyled">
                         <li><span><i class="glyphicon glyphicon-calendar"></i> {{ post.createdAt|date("F jS \\a\\t g:ia") }}</span></li>
@@ -44,7 +44,8 @@
                 <div class="well" style="margin-left: 50px; background-color: #dbfff8">
                     <div class="media">
                         <div class="media-body">
-                            <p class="text-left"><strong><em>{{ comment.author }}</em></strong> <small><em>{{ comment.createdAt|date("F jS \\a\\t g:ia") }}</em></small></p>
+                            <span class="text-left"><strong><em>{{ comment.author }}</em></strong></span>
+                            <span class="text-right"><small><em>{{ comment.createdAt|date("F jS \\a\\t g:ia") }}</em></small></span>
                             <p>{{ comment.text }}</p>
                         </div>
                     </div>
@@ -56,7 +57,7 @@
 {% endblock %}
 {% block search %}
     <div class="well">
-        <h4>Search</h4>
+        <h4>{% trans %}Search{% endtrans %}</h4>
         <div class="input-group">
             <input type="text" class="form-control">
             <span class="input-group-btn">
@@ -69,7 +70,7 @@
 {% endblock %}
 {% block category %}
     <div class="well">
-        <h4>Categories</h4>
+        <h4>{% trans %}Categories{% endtrans %}</h4>
         <div class="row">
             <div class="col-lg-6">
                 <ul class="list-unstyled">

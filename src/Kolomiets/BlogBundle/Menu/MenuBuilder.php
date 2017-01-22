@@ -22,9 +22,9 @@ class MenuBuilder
     {
         $menu = $this->factory->createItem('mainMenu');
 
-        $menu->addChild('All posts', array('route' => 'show_posts'));
-        $menu->addChild('Add post', array('route' => 'add_post'));
-        $menu->addChild('Add category', array('route' => 'add_category'));
+        $menu->addChild('All posts', ['route' => 'show_posts']);
+        $menu->addChild('Add post', ['route' => 'add_post']);
+        $menu->addChild('Add category', ['route' => 'add_category']);
         $menu->setChildrenAttribute('class', 'nav navbar-nav');
 
         return $menu;

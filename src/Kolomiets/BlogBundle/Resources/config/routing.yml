@@ -1,20 +1,24 @@
-blog:
+default:
     path:     /
     defaults: { _controller: KolomietsBlogBundle:Default:showPosts }
 
-locale_show:
+blog:
+    path:     /{_locale}
+    defaults: { _controller: KolomietsBlogBundle:Default:showPosts }
+    requirements:
+                    _locale: en|ru
+
+show_posts:
     path:     /{_locale}/show
     defaults: { _controller: KolomietsBlogBundle:Default:showPosts }
     requirements:
-        _locale: en|ru
-
-show_posts:
-    path:     /show
-    defaults: { _controller: KolomietsBlogBundle:Default:showPosts }
+            _locale: en|ru
 
 add_post:
-    path:     /addpost
+    path:     /{_locale}/addpost
     defaults: { _controller: KolomietsBlogBundle:Default:addPost }
+    requirements:
+                _locale: en|ru
 
 remove_post:
     path:     /remove/{postId}
@@ -29,11 +33,12 @@ edit_post:
         postId: '\d+'
 
 add_category:
-    path:     /addcategory
+    path:     /{_locale}/addcategory
     defaults: { _controller: KolomietsBlogBundle:Category:addCategory }
 
 add_comment:
-    path:     /addcomment/{postId}
+    path:     /{_locale}/addcomment/{postId}
     defaults: { _controller: KolomietsBlogBundle:Comment:addComment, postId: '0' }
     requirements:
         postId: '\d+'
+        _locale: en|ru
