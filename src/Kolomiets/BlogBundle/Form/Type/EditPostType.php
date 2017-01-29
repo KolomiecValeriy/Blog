@@ -13,7 +13,10 @@ class EditPostType extends AbstractType
     {
         $builder
             ->add('name', HiddenType::class)
-            ->add('submit', SubmitType::class, ['label' => 'Edit']);
+            ->add('submit', SubmitType::class, [
+                'label' => ' ',
+                'attr' => ['class' => 'btn btn-link glyphicon glyphicon-edit']
+            ]);
     }
 
     public function getName()

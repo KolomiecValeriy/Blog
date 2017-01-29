@@ -21,14 +21,12 @@
                             {{ form_widget(editForm[i]) }}
                             {{ form_end(editForm[i]) }}
                         </li>
-                        <li>|</li>
                         <li>
                             {{ form_start(removeForm[i]) }}
                             {{ form_widget(removeForm[i].name, { 'attr': { 'value': post.id } }) }}
                             {{ form_widget(removeForm[i]) }}
                             {{ form_end(removeForm[i]) }}
                         </li>
-                        <li>|</li>
                         <li>
                             {{ form_start(addCommentForm[i]) }}
                             {{ form_widget(addCommentForm[i].name, { 'attr': { 'value': post.id } }) }}
@@ -54,6 +52,9 @@
         {% endfor %}
         {% set i = i + 1 %}
     {% endfor %}
+    <div class="navigation text-center">
+        {{ knp_pagination_render(posts) }}
+    </div>
 {% endblock %}
 {% block search %}
     <div class="well">

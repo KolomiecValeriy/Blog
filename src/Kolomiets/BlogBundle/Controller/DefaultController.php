@@ -2,6 +2,7 @@
 
 namespace Kolomiets\BlogBundle\Controller;
 
+use Knp\Bundle\PaginatorBundle\KnpPaginatorBundle;
 use Kolomiets\BlogBundle\Entity\Post;
 use Kolomiets\BlogBundle\Form\Type\AddCommentType;
 use Kolomiets\BlogBundle\Form\Type\EditPostType;
@@ -22,6 +23,16 @@ class DefaultController extends Controller
         $posts = $em->getRepository('KolomietsBlogBundle:Post')->findAll();
         $comments = $em->getRepository('KolomietsBlogBundle:Comment')->findAll();
         $categories = $em->getRepository('KolomietsBlogBundle:Category')->findAll();
+
+        /**
+         * @var $paginator \Knp\Component\Pager\Paginator
+         */
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $posts,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 5)
+        );
 
         if (count($posts) == 0) {
             return $this->render('KolomietsBlogBundle:Default:emptyPosts.html.twig',
@@ -67,7 +78,7 @@ class DefaultController extends Controller
 
         return $this->render('KolomietsBlogBundle:Default:showPosts.html.twig',
             [
-                'posts' => $posts,
+                'posts' => $pagination,
                 'comments' => $comments,
                 'categories' => $categories,
                 'removeForm' => $removeForm,
