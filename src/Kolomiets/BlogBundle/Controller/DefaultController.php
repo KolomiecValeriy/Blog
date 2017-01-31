@@ -8,6 +8,7 @@ use Kolomiets\BlogBundle\Form\Type\AddCommentType;
 use Kolomiets\BlogBundle\Form\Type\EditPostType;
 use Kolomiets\BlogBundle\Form\Type\PostType;
 use Kolomiets\BlogBundle\Form\Type\RemovePostType;
+use Kolomiets\BlogBundle\Form\Type\SearchPostType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -15,30 +16,47 @@ class DefaultController extends Controller
 {
     /**
      * @param Request $request
+     * @param $searchText
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function showPostsAction(Request $request)
+    public function showPostsAction(Request $request, $searchText)
     {
         $em = $this->getDoctrine()->getManager();
-        $posts = $em->getRepository('KolomietsBlogBundle:Post')->findAll();
         $comments = $em->getRepository('KolomietsBlogBundle:Comment')->findAll();
         $categories = $em->getRepository('KolomietsBlogBundle:Category')->findAll();
+
+        $searchPostForm = $this->createForm(SearchPostType::class);
+        $searchPostForm->handleRequest($request);
 
         /**
          * @var $paginator \Knp\Component\Pager\Paginator
          */
         $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $posts,
-            $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 5)
-        );
+//        $posts = $em->getRepository('KolomietsBlogBundle:Post')->findAll();
+
+        if($searchText != 'empty') {
+            $posts = $em->getRepository('KolomietsBlogBundle:Post')->findPostByText($searchText);
+        }
+        else {
+            $posts = $em->getRepository('KolomietsBlogBundle:Post')->findAll();
+        }
+
+        if ($request->isMethod($request::METHOD_POST)) {
+            if($searchPostForm->isSubmitted() && $searchPostForm->isValid()) {
+                $formData = $searchPostForm->getData();
+                return $this->redirectToRoute('show_posts', ['searchText' => $formData['text']]);
+//                $posts = $em->getRepository('KolomietsBlogBundle:Post')->findPostByText($formData['text']);
+            }
+        }
 
         if (count($posts) == 0) {
+            $searchPostForm = $searchPostForm->createView();
+
             return $this->render('KolomietsBlogBundle:Default:emptyPosts.html.twig',
                 [
                     'posts' => $posts,
                     'categories' => $categories,
+                    'searchPostForm' => $searchPostForm,
                 ]
             );
         }
@@ -75,6 +93,13 @@ class DefaultController extends Controller
             $editForm[$i] = $editForm[$i]->createView();
             $addCommentForm[$i] = $addCommentForm[$i]->createView();
         }
+        $searchPostForm = $searchPostForm->createView();
+
+        $pagination = $paginator->paginate(
+            $posts,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 5)
+        );
 
         return $this->render('KolomietsBlogBundle:Default:showPosts.html.twig',
             [
@@ -84,6 +109,7 @@ class DefaultController extends Controller
                 'removeForm' => $removeForm,
                 'editForm' => $editForm,
                 'addCommentForm' => $addCommentForm,
+                'searchPostForm' => $searchPostForm,
             ]
         );
     }

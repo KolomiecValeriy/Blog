@@ -1,18 +1,18 @@
 default:
-    path:     /
-    defaults: { _controller: KolomietsBlogBundle:Default:showPosts }
+    path:     /{searchText}
+    defaults: { _controller: KolomietsBlogBundle:Default:showPosts, searchText: 'empty' }
 
 blog:
     path:     /{_locale}
     defaults: { _controller: KolomietsBlogBundle:Default:showPosts }
     requirements:
-                    _locale: en|ru
+        _locale: en|ru
 
 show_posts:
-    path:     /{_locale}/show
-    defaults: { _controller: KolomietsBlogBundle:Default:showPosts }
+    path:     /{_locale}/show/{searchText}
+    defaults: { _controller: KolomietsBlogBundle:Default:showPosts, searchText: 'empty' }
     requirements:
-            _locale: en|ru
+        _locale: en|ru
 
 add_post:
     path:     /{_locale}/addpost

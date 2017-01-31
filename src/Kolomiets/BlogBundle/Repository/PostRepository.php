@@ -11,7 +11,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class PostRepository extends EntityRepository
 {
-    public function findAllWithComment() {
+    /**
+     * @param String $text
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function findPostByText(String $text) {
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.name LIKE :text')
+            ->orWhere('p.text LIKE :text')
+            ->setParameter('text', '%'.$text.'%');
 
+        return $qb->getQuery()->getResult();
+//        select * from post WHERE name LIKE '%test%'
     }
 }
