@@ -1,10 +1,10 @@
 default:
-    path:     /{searchText}
+    path:     /
     defaults: { _controller: KolomietsBlogBundle:Default:showPosts, searchText: 'empty' }
 
 blog:
     path:     /{_locale}
-    defaults: { _controller: KolomietsBlogBundle:Default:showPosts }
+    defaults: { _controller: KolomietsBlogBundle:Default:showPosts, searchText: 'empty' }
     requirements:
         _locale: en|ru
 
@@ -18,7 +18,7 @@ add_post:
     path:     /{_locale}/addpost
     defaults: { _controller: KolomietsBlogBundle:Default:addPost }
     requirements:
-                _locale: en|ru
+        _locale: en|ru
 
 remove_post:
     path:     /remove/{postId}

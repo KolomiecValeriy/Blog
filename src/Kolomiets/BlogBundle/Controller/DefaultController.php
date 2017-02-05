@@ -2,7 +2,7 @@
 
 namespace Kolomiets\BlogBundle\Controller;
 
-use Knp\Bundle\PaginatorBundle\KnpPaginatorBundle;
+//use Knp\Bundle\PaginatorBundle\KnpPaginatorBundle;
 use Kolomiets\BlogBundle\Entity\Post;
 use Kolomiets\BlogBundle\Form\Type\AddCommentType;
 use Kolomiets\BlogBundle\Form\Type\EditPostType;
@@ -32,7 +32,6 @@ class DefaultController extends Controller
          * @var $paginator \Knp\Component\Pager\Paginator
          */
         $paginator  = $this->get('knp_paginator');
-//        $posts = $em->getRepository('KolomietsBlogBundle:Post')->findAll();
 
         if($searchText != 'empty') {
             $posts = $em->getRepository('KolomietsBlogBundle:Post')->findPostByText($searchText);
@@ -45,7 +44,6 @@ class DefaultController extends Controller
             if($searchPostForm->isSubmitted() && $searchPostForm->isValid()) {
                 $formData = $searchPostForm->getData();
                 return $this->redirectToRoute('show_posts', ['searchText' => $formData['text']]);
-//                $posts = $em->getRepository('KolomietsBlogBundle:Post')->findPostByText($formData['text']);
             }
         }
 

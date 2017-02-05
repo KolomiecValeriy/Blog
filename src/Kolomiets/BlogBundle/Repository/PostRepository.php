@@ -16,12 +16,19 @@ class PostRepository extends EntityRepository
      * @return \Doctrine\ORM\QueryBuilder
      */
     public function findPostByText(String $text) {
-        $qb = $this->createQueryBuilder('p')
+        return $this->createQueryBuilder('p')
             ->where('p.name LIKE :text')
             ->orWhere('p.text LIKE :text')
-            ->setParameter('text', '%'.$text.'%');
+            ->setParameter('text', '%'.$text.'%')
+            ->getQuery()
+            ->getResult();
+    }
 
-        return $qb->getQuery()->getResult();
-//        select * from post WHERE name LIKE '%test%'
+    public function findPostByCategory(Int $id) {
+        return $this->createQueryBuilder('p')
+            ->where('p.category = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
     }
 }
