@@ -12,3 +12,21 @@ services:
               arguments: ["@knp_menu.factory"]
               tags:
                   - { name: knp_menu.menu_builder, method: createMainMenu, alias: main }
+
+      admin.post:
+              class: Kolomiets\BlogBundle\Admin\PostAdmin
+              arguments: [~, Kolomiets\BlogBundle\Entity\Post, ~]
+              tags:
+                  - { name: sonata.admin, manager_type: orm, label: Post }
+
+      admin.category:
+                    class: Kolomiets\BlogBundle\Admin\CategoryAdmin
+                    arguments: [~, Kolomiets\BlogBundle\Entity\Category, ~]
+                    tags:
+                        - { name: sonata.admin, manager_type: orm, label: Category }
+
+      admin.comment:
+                          class: Kolomiets\BlogBundle\Admin\CommentAdmin
+                          arguments: [~, Kolomiets\BlogBundle\Entity\Comment, ~]
+                          tags:
+                              - { name: sonata.admin, manager_type: orm, label: Comment }
