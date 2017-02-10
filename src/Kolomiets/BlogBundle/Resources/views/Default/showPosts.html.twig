@@ -1,6 +1,5 @@
 {% extends "KolomietsBlogBundle:Default:template.html.twig" %}
 
-{% block head %}{% trans %}All posts{% endtrans %}{% endblock %}
 {% block text %}
     {% set i = 0 %}
     {% for post in posts %}
@@ -17,20 +16,20 @@
                         <li>|</li>
                         <li>
                             {{ form_start(editForm[i]) }}
-                            {{ form_widget(editForm[i].name, { 'attr': { 'value': post.id } }) }}
-                            {{ form_widget(editForm[i]) }}
+                                {{ form_widget(editForm[i].name, { 'attr': { 'value': post.id } }) }}
+                                <button class="btn btn-link glyphicon glyphicon-edit" type="submit"></button>
                             {{ form_end(editForm[i]) }}
                         </li>
                         <li>
                             {{ form_start(removeForm[i]) }}
-                            {{ form_widget(removeForm[i].name, { 'attr': { 'value': post.id } }) }}
-                            {{ form_widget(removeForm[i]) }}
+                                {{ form_widget(removeForm[i].name, { 'attr': { 'value': post.id } }) }}
+                                <button class="btn btn-link glyphicon glyphicon-trash" type="submit"></button>
                             {{ form_end(removeForm[i]) }}
                         </li>
                         <li>
                             {{ form_start(addCommentForm[i]) }}
-                            {{ form_widget(addCommentForm[i].name, { 'attr': { 'value': post.id } }) }}
-                            {{ form_widget(addCommentForm[i]) }}
+                                {{ form_widget(addCommentForm[i].name, { 'attr': { 'value': post.id } }) }}
+                                <button class="btn btn-link glyphicon glyphicon-comment" type="submit"></button>
                             {{ form_end(addCommentForm[i]) }}
                         </li>
                     </ul>
@@ -61,16 +60,13 @@
         <h4>{% trans %}Search{% endtrans %}</h4>
         <div class="input-group">
             {{ form_start(searchPostForm) }}
-            {{ form_widget(searchPostForm.text) }}
-            <span class="input-group-btn">{{ form_widget(searchPostForm.submit) }}</span>
+                <span class="input-group-btn">
+                    {{ form_widget(searchPostForm.text) }}
+                    <button class="btn btn-default" type="submit">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
             {{ form_end(searchPostForm) }}
-            {#Old form#}
-            {#<input type="text" class="form-control">#}
-            {#<span class="input-group-btn">#}
-                {#<button class="btn btn-default" type="button">#}
-                    {#<span class="glyphicon glyphicon-search"></span>#}
-                {#</button>#}
-            {#</span>#}
         </div>
     </div>
 {% endblock %}

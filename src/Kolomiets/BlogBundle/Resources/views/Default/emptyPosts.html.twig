@@ -1,12 +1,8 @@
 {% extends "KolomietsBlogBundle:Default:template.html.twig" %}
 
 {% block text %}
-    <div class="well">
-        <div class="media">
-            <div class="media-body text-center">
-                <h1><b>{% trans %}No posts found{% endtrans %}!</b></h1>
-            </div>
-        </div>
+    <div class="media-body text-center">
+        <h1><b>{% trans %}No posts found{% endtrans %}!</b></h1>
     </div>
 {% endblock %}
 {% block search %}
@@ -14,8 +10,12 @@
         <h4>{% trans %}Search{% endtrans %}</h4>
         <div class="input-group">
             {{ form_start(searchPostForm) }}
-            {{ form_widget(searchPostForm.text) }}
-            <span class="input-group-btn">{{ form_widget(searchPostForm.submit) }}</span>
+                <span class="input-group-btn">
+                    {{ form_widget(searchPostForm.text) }}
+                    <button class="btn btn-default" type="submit">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
             {{ form_end(searchPostForm) }}
         </div>
     </div>

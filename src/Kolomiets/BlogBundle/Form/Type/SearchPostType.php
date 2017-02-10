@@ -15,10 +15,11 @@ class SearchPostType extends AbstractType
             ->add('text', TextType::class, [
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Search',
-                'attr' => ['class' => 'btn btn-default glyphicon glyphicon-search']
-            ]);
+        ;
+//            ->add('submit', SubmitType::class, [
+//                'label' => 'Search',
+//                'attr' => ['class' => 'btn btn-default glyphicon glyphicon-search']
+//            ])
     }
 
     public function getName()
