@@ -20,13 +20,13 @@ services:
                   - { name: sonata.admin, manager_type: orm, label: Post }
 
       admin.category:
-                    class: Kolomiets\BlogBundle\Admin\CategoryAdmin
-                    arguments: [~, Kolomiets\BlogBundle\Entity\Category, ~]
-                    tags:
-                        - { name: sonata.admin, manager_type: orm, label: Category }
+              class: Kolomiets\BlogBundle\Admin\CategoryAdmin
+              arguments: [~, Kolomiets\BlogBundle\Entity\Category, ~]
+              tags:
+                  - { name: sonata.admin, manager_type: orm, label: Category }
 
       admin.comment:
-                          class: Kolomiets\BlogBundle\Admin\CommentAdmin
-                          arguments: [~, Kolomiets\BlogBundle\Entity\Comment, ~]
-                          tags:
-                              - { name: sonata.admin, manager_type: orm, label: Comment }
+              class: Kolomiets\BlogBundle\Admin\CommentAdmin
+              arguments: [~, Kolomiets\BlogBundle\Entity\Comment, ~]
+              tags:
+                  - { name: sonata.admin, manager_type: orm, label: Comment }
