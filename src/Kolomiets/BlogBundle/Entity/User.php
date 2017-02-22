@@ -22,17 +22,10 @@ class User extends BaseUser
      */
     protected $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=25, unique=true)
-     */
-//    private $name;
-//
-//    public function __construct()
-//    {
-//        parent::__construct();
-//    }
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     /**
      * Get id
@@ -43,29 +36,5 @@ class User extends BaseUser
     {
         return $this->id;
     }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return User
-     */
-//    public function setName($name)
-//    {
-//        $this->name = $name;
-//
-//        return $this;
-//    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-//    public function getName()
-//    {
-//        return $this->name;
-//    }
 }
 
