@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Kolomiets\BlogBundle\KolomietsBlogBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new FOS\ElasticaBundle\FOSElasticaBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

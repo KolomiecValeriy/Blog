@@ -108,3 +108,19 @@ fos_user:
     from_email:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
+
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        blog:
+            types:
+                post:
+                    properties:
+                          name: ~
+                          text: ~
+                    persistence:
+                          driver: orm
+                          model: Kolomiets\BlogBundle\Entity\Post
+                          provider: ~
+                          finder: ~

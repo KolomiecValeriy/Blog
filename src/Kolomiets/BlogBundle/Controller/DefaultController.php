@@ -2,7 +2,6 @@
 
 namespace Kolomiets\BlogBundle\Controller;
 
-//use Knp\Bundle\PaginatorBundle\KnpPaginatorBundle;
 use Kolomiets\BlogBundle\Entity\Post;
 use Kolomiets\BlogBundle\Form\Type\AddCommentType;
 use Kolomiets\BlogBundle\Form\Type\EditPostType;
@@ -34,7 +33,8 @@ class DefaultController extends Controller
         $paginator  = $this->get('knp_paginator');
 
         if($searchText != 'empty') {
-            $posts = $em->getRepository('KolomietsBlogBundle:Post')->findPostByText($searchText);
+            $finder = $this->container->get('fos_elastica.finder.blog.post');
+            $posts = $finder->find($searchText);
         }
         else {
             $posts = $em->getRepository('KolomietsBlogBundle:Post')->findAll();
