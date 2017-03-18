@@ -1,0 +1,16 @@
+BlogBundle\Entity\Post:
+    exclusion_policy: ALL
+        group: post
+        properties:
+            id:
+                expose: true
+            name:
+                expose: true
+            text:
+                expose: true
+            author:
+                expose: true
+            category:
+                expose: true
+            createdAt:
+                expose: true

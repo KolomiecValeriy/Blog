@@ -1,0 +1,9 @@
+blog_user:
+  type: rest
+  resource: "@KolomietsBlogBundle/Controller/Api/UserController.php"
+  prefix: /
+
+blog_post:
+  type: rest
+  resource: "@KolomietsBlogBundle/Controller/Api/PostController.php"
+  prefix: /
