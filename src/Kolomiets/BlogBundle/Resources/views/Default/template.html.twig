@@ -20,11 +20,26 @@
                 <ul class="nav navbar-nav">
                     {{ knp_menu_render('main') }}
                 </ul>
-                <ul class="nav navbar-nav navbar-right" style="margin-left: 20%">
+                <ul class="nav navbar-nav navbar-right" style="margin-right: 75px">
                     <li><a href="{{ url("default") }}en">en</a></li>
                     <li><a>|</a></li>
                     <li><a href="{{ url("default") }}ru">ru</a></li>
+                    {#<li><a href="{{ url("logout") }}">Logout</a></li>#}
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <li>
+                            <a href="{{ path('fos_user_security_logout') }}">
+                                Hi, {{ '%username%'|trans({'%username%': app.user.username}, 'FOSUserBundle') |upper }} | {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                        </li>
+                    {% endif %}
                 </ul>
+                {#<ul class="nav navbar-nav navbar-right" style="margin-left: 0%">#}
+                    {#<li><a href="{{ url("logout") }}">Logout</a></li>#}
+                {#</ul>#}
             </div>
         </div>
     </nav>
