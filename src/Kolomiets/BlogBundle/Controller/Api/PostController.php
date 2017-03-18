@@ -4,12 +4,23 @@ namespace Kolomiets\BlogBundle\Controller\Api;
 
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\FOSRestController;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Kolomiets\BlogBundle\Entity\Post;
 
 class PostController extends FOSRestController
 {
     /**
+     * @ApiDoc(
+     *   output = "BlogBundle\Entity\Post",
+     *   description = "Return all Posts in JSON",
+     *   resource = true,
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "Returned when not found"
+     *   }
+     * )
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      * @View(serializerGroups={"post"})
      */
@@ -22,6 +33,16 @@ class PostController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *   output = "BlogBundle\Entity\Post",
+     *   description = "Return Post from his id in JSON",
+     *   resource = true,
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "Returned when not found"
+     *   }
+     * )
+     *
      * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      * @View(serializerGroups={"post"})
