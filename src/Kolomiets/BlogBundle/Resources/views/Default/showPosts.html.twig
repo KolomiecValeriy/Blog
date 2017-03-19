@@ -6,11 +6,11 @@
         <div class="well">
             <div class="media">
                 <div class="media-body">
-                    <h4 class="media-heading"><strong>{{ post.name }}</strong></h4>
-                    <p class="text-right"><small>{% trans %}Author{% endtrans %}: </small><em>{{ post.author }}</em></p>
+                    <h4 class="media-heading"><strong><ins>{{ post.name }}</ins></strong></h4>
+                    <p class="text-right"><small>{% trans %}Author{% endtrans %}: </small><em><b>{{ post.author }}</b></em></p>
                     <p>{{ post.text }}</p>
                     <ul class="list-inline list-unstyled">
-                        <li><span><i class="glyphicon glyphicon-calendar"></i> {{ post.createdAt|date("F jS \\a\\t g:ia") }}</span></li>
+                        <li><span><i class="glyphicon glyphicon-calendar"></i> {{ post.createdAt|date("F jS \\a\\t g:ia Y") }}</span></li>
                         <li>|</li>
                         <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
                         <li>|</li>

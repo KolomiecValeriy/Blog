@@ -34,11 +34,13 @@
         "friendsofsymfony/elastica-bundle": "^3.2",
         "friendsofsymfony/rest-bundle": "^2.1",
         "jms/serializer-bundle": "^1.2",
-        "nelmio/api-doc-bundle": "^2.13"
+        "nelmio/api-doc-bundle": "^2.13",
+        "fzaninotto/faker": "^1.6"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
-        "symfony/phpunit-bridge": "^3.0"
+        "symfony/phpunit-bridge": "^3.0",
+        "doctrine/doctrine-fixtures-bundle": "^2.3"
     },
     "scripts": {
         "symfony-scripts": [
