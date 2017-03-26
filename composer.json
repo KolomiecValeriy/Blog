@@ -35,7 +35,8 @@
         "friendsofsymfony/rest-bundle": "^2.1",
         "jms/serializer-bundle": "^1.2",
         "nelmio/api-doc-bundle": "^2.13",
-        "fzaninotto/faker": "^1.6"
+        "fzaninotto/faker": "^1.6",
+        "hwi/oauth-bundle": "^0.5.3"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

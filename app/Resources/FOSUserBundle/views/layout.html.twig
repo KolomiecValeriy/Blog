@@ -14,4 +14,14 @@
         {% block fos_user_content %}
         {% endblock fos_user_content %}
     </div>
+    <div>
+        <a href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}">
+            <span>Facebook</span>
+        </a>
+    </div>
+    <div>
+        <a href="{{ path('hwi_oauth_service_redirect', {'service': 'google' }) }}">
+            <span>Google</span>
+        </a>
+    </div>
 {% endblock %}

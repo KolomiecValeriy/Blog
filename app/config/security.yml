@@ -11,10 +11,6 @@ security:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-#        dev:
-#            pattern: ^/(_(profiler|wdt)|css|images|js)/
-#            security: false
 
         main:
             pattern: ^/
@@ -24,6 +20,19 @@ security:
 
             logout:       true
             anonymous:    true
+
+        oauth:
+            pattern: ^/
+            oauth:
+                failure_path: /login
+                login_path: /login
+                check_path: /connect_check
+                provider: fos_userbundle
+                resource_owners:
+                    facebook: "/login/check-facebook"
+                    google: "/login/check-google"
+                oauth_user_provider:
+                    service: blog.provider.oauth
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
