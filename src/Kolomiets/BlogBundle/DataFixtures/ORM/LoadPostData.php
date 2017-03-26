@@ -24,6 +24,7 @@ class LoadPostData extends AbstractFixture implements OrderedFixtureInterface
                 ->setAuthor($faker->name)
                 ->setCategory($this->getReference('category'.rand(1, 6)))
                 ->setCreatedAt($faker->dateTimeBetween('-5 month', 'now'))
+                ->setPosted(true)
             ;
             $manager->persist($post);
 

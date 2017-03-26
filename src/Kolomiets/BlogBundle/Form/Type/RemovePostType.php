@@ -14,10 +14,6 @@ class RemovePostType extends AbstractType
         $builder
             ->add('name', HiddenType::class)
         ;
-//            ->add('submit', SubmitType::class, [
-//                'label' => ' ',
-//                'attr' => ['class' => 'btn btn-link glyphicon glyphicon-trash']
-//            ])
     }
 
     public function getName()

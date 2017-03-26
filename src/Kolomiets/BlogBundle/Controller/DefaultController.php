@@ -37,7 +37,7 @@ class DefaultController extends Controller
             $posts = $finder->find($searchText);
         }
         else {
-            $posts = $em->getRepository('KolomietsBlogBundle:Post')->findAll();
+            $posts = $em->getRepository('KolomietsBlogBundle:Post')->findAllPosted();
         }
 
         if ($request->isMethod($request::METHOD_POST)) {

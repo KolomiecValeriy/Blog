@@ -4,6 +4,8 @@ namespace Kolomiets\BlogBundle\Form\Type;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -25,7 +27,20 @@ class PostType extends AbstractType
                     'class' => 'KolomietsBlogBundle:Category',
                 ]
             )
-            ->add('save', SubmitType::class, ['label' => 'Save']);
+            ->add('posted', CheckboxType::class,
+                [
+                    'label' => 'Publish now',
+                    'required' => false
+                ]
+            )
+            ->add('postedAt', DateType::class,
+                [
+                    'label' => 'Publish date',
+                    'data'  =>  new \DateTime('now')
+                ]
+            )
+            ->add('save', SubmitType::class, ['label' => 'Save'])
+        ;
     }
 
     public function getName()

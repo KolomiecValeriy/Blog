@@ -21,7 +21,8 @@ class PostRepository extends EntityRepository
             ->orWhere('p.text LIKE :text')
             ->setParameter('text', '%'.$text.'%')
             ->getQuery()
-            ->getResult();
+            ->getResult()
+        ;
     }
 
     public function findPostByCategory(Int $id) {
@@ -29,6 +30,27 @@ class PostRepository extends EntityRepository
             ->where('p.category = :id')
             ->setParameter('id', $id)
             ->getQuery()
-            ->getResult();
+            ->getResult()
+        ;
+    }
+
+    public function findAllPosted() {
+        return $this->createQueryBuilder('p')
+            ->where('p.posted = :status')
+            ->setParameter('status', true)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findPendingPosts() {
+        return $this->createQueryBuilder('p')
+            ->where('p.posted = :status')
+            ->andWhere('p.postedAt <= :now')
+            ->setParameter('status', false)
+            ->setParameter('now', new \DateTime('now'))
+            ->getQuery()
+            ->getResult()
+        ;
     }
 }

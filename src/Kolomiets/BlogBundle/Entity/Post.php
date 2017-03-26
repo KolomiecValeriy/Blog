@@ -56,6 +56,12 @@ class Post
     private $createdAt;
 
     /**
+     * @Gedmo\Timestampable()
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $postedAt;
+
+    /**
      * @var string
      *
      * @ORM\Column(type="string", length=30)
@@ -74,6 +80,11 @@ class Post
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $category;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $posted;
 
     /**
      * Get id
@@ -203,5 +214,37 @@ class Post
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * @param boolean $posted
+     */
+    public function setPosted(bool $posted)
+    {
+        $this->posted = $posted;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getPosted()
+    {
+        return $this->posted;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPostedAt()
+    {
+        return $this->postedAt;
+    }
+
+    /**
+     * @param mixed $postedAt
+     */
+    public function setPostedAt($postedAt)
+    {
+        $this->postedAt = $postedAt;
     }
 }

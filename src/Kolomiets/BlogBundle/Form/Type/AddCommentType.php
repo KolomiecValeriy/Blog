@@ -14,10 +14,6 @@ class AddCommentType extends AbstractType
         $builder
             ->add('name', HiddenType::class)
         ;
-//            ->add('submit', SubmitType::class, [
-//                'label' => ' ',
-//                'attr' => ['class' => 'btn btn-link glyphicon glyphicon-comment']
-//            ])
     }
 
     public function getName()
