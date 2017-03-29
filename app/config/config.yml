@@ -114,7 +114,7 @@ fos_user:
 # HWIOAuthBundle Configuration
 hwi_oauth:
     # name of the firewall in which this bundle is active, this setting MUST be set
-    firewall_names: ['oauth']
+    firewall_names: [main]
     connect:
         account_connector: blog.provider.oauth
     resource_owners:
@@ -133,8 +133,6 @@ hwi_oauth:
             client_id:           "692300090638-brbkefj984t1364npjqh2t55c3apmdcc.apps.googleusercontent.com"
             client_secret:       "z4k-iIwTCx59KG5LXm6M2WGW"
             scope:              "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
-            paths:
-                email: email
 
 # FOSElasticsearch Configuration
 fos_elastica:

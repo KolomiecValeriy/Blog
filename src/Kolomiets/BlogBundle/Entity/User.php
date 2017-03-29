@@ -25,16 +25,26 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="facebook_id", type="string", nullable=true)
+     * @ORM\Column(name="facebookId", type="string", nullable=true)
      */
-    private $facebookID;
+    private $facebookId;
+
+    /**
+     * @ORM\Column(name="facebookAccessToken", type="string", length=255, nullable=true)
+     */
+    protected $facebookAccessToken;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="google_id", type="string", nullable=true)
+     * @ORM\Column(name="googleId", type="string", nullable=true)
      */
-    private $googleID;
+    private $googleId;
+
+    /**
+     * @ORM\Column(name="googleAccessToken", type="string", length=255, nullable=true)
+     */
+    protected $googleAccessToken;
 
     public function __construct()
     {
@@ -54,33 +64,65 @@ class User extends BaseUser
     /**
      * @return string
      */
-    public function getFacebookID()
+    public function getFacebookId()
     {
-        return $this->facebookID;
+        return $this->facebookId;
     }
 
     /**
-     * @param string $facebookID
+     * @param string $facebookId
      */
-    public function setFacebookID(string $facebookID)
+    public function setFacebookId(string $facebookId)
     {
-        $this->facebookID = $facebookID;
+        $this->facebookId = $facebookId;
     }
 
     /**
      * @return string
      */
-    public function getGoogleID()
+    public function getGoogleId()
     {
-        return $this->googleID;
+        return $this->googleId;
     }
 
     /**
-     * @param string $googleID
+     * @param string $googleId
      */
-    public function setGoogleID(string $googleID)
+    public function setGoogleId(string $googleId)
     {
-        $this->googleID = $googleID;
+        $this->googleId = $googleId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFacebookAccessToken()
+    {
+        return $this->facebookAccessToken;
+    }
+
+    /**
+     * @param mixed $facebookAccessToken
+     */
+    public function setFacebookAccessToken($facebookAccessToken)
+    {
+        $this->facebookAccessToken = $facebookAccessToken;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGoogleAccessToken()
+    {
+        return $this->googleAccessToken;
+    }
+
+    /**
+     * @param mixed $googleAccessToken
+     */
+    public function setGoogleAccessToken($googleAccessToken)
+    {
+        $this->googleAccessToken = $googleAccessToken;
     }
 }
 
