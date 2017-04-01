@@ -15,21 +15,21 @@ class OAuthUserProvider extends BaseClass
     public function connect(UserInterface $user, UserResponseInterface $response)
     {
         $property = $this->getProperty($response);
-        $username = $response->getUsername();
+        $userName = $response->getUsername();
         //on connect - get the access token and the user ID
         $service = $response->getResourceOwner()->getName();
         $setter = 'set'.ucfirst($service);
-        $setter_id = $setter.'Id';
-        $setter_token = $setter.'AccessToken';
+        $setServiceId = $setter.'Id';
+        $setServiceToken = $setter.'AccessToken';
         //we "disconnect" previously connected users
-        if (null !== $previousUser = $this->userManager->findUserBy(array($property => $username))) {
-            $previousUser->$setter_id(null);
-            $previousUser->$setter_token(null);
+        if (null !== $previousUser = $this->userManager->findUserBy(array($property => $userName))) {
+            $previousUser->$setServiceId(null);
+            $previousUser->$setServiceToken(null);
             $this->userManager->updateUser($previousUser);
         }
         //we connect current user
-        $user->$setter_id($username);
-        $user->$setter_token($response->getAccessToken());
+        $user->$setServiceId($userName);
+        $user->$setServiceToken($response->getAccessToken());
         $this->userManager->updateUser($user);
     }
 
@@ -39,23 +39,23 @@ class OAuthUserProvider extends BaseClass
      */
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
     {
-        $username = $response->getUsername();
-        $user = $this->userManager->findUserBy(array($this->getProperty($response) => $username));
+        $userName = $response->getUsername();
+        $userFullName = $response->getRealName();
+        $user = $this->userManager->findUserBy(array($this->getProperty($response) => $userName));
         //when the user is registrating
         if (null === $user) {
             $service = $response->getResourceOwner()->getName();
             $setter = 'set'.ucfirst($service);
-            $setter_id = $setter.'Id';
-            $setter_token = $setter.'AccessToken';
+            $setServiceId = $setter.'Id';
+            $setServiceToken = $setter.'AccessToken';
             // create new user here
             $user = $this->userManager->createUser();
-            $user->$setter_id($username);
-            $user->$setter_token($response->getAccessToken());
-            //I have set all requested data with the user's username
-            //modify here with relevant data
-            $user->setUsername($username);
-            $user->setEmail($username);
-            $user->setPassword($username);
+            $user->$setServiceId($userName);
+            $user->$setServiceToken($response->getAccessToken());
+
+            $user->setUsername($userFullName);
+            $user->setEmail($userName);
+            $user->setPassword($userName);
             $user->setEnabled(true);
             $this->userManager->updateUser($user);
             return $user;
@@ -71,44 +71,4 @@ class OAuthUserProvider extends BaseClass
 
         return $user;
     }
-//    /**
-//     * @param UserResponseInterface $response
-//     * @return \FOS\UserBundle\Model\UserInterface
-//     */
-//    public function loadUserByOAuthUserResponse(UserResponseInterface $response)
-//    {
-//        $socialID = $response->getUsername();
-//        $user = $this->userManager->findUserBy(array($this->getProperty($response)=>$socialID));
-//        $email = $response->getEmail();
-//        //check if the user already has the corresponding social account
-//        if (null === $user) {
-//            //check if the user has a normal account
-//            $user = $this->userManager->findUserByEmail($email);
-//
-//            if (null === $user || !$user instanceof UserInterface) {
-//                //if the user does not have a normal account, set it up:
-//                $user = $this->userManager->createUser();
-//                $user->setEmail($email);
-//                $user->setPlainPassword(md5(uniqid()));
-//                $user->setEnabled(true);
-//            }
-//            //then set its corresponding social id
-//            $service = $response->getResourceOwner()->getName();
-//            switch ($service) {
-//                case 'google':
-//                    $user->setGoogleID($socialID);
-//                    break;
-//                case 'facebook':
-//                    $user->setFacebookID($socialID);
-//                    break;
-//            }
-//            $this->userManager->updateUser($user);
-//        } else {
-//            //and then login the user
-//            $checker = new UserChecker();
-//            $checker->checkPreAuth($user);
-//        }
-//
-//        return $user;
-//    }
 }
