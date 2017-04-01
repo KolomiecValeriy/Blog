@@ -3,6 +3,12 @@
 {% block text %}
     {% set i = 0 %}
     {% for post in posts %}
+        {% set countComment = 0 %}
+        {% for comment in comments %}
+            {% if comment.post == post %}
+                {% set countComment = countComment + 1 %}
+            {% endif %}
+        {% endfor %}
         <div class="well">
             <div class="media">
                 <div class="media-body">
@@ -12,7 +18,7 @@
                     <ul class="list-inline list-unstyled">
                         <li><span><i class="glyphicon glyphicon-calendar"></i> {{ post.createdAt|date("F jS \\a\\t g:ia Y") }}</span></li>
                         <li>|</li>
-                        <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+                        <span><i class="glyphicon glyphicon-comment"></i> {{ countComment }} comments</span>
                         <li>|</li>
                         <li>
                             {{ form_start(editForm[i]) }}
